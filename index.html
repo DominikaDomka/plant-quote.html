@@ -7,92 +7,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #widget {
-            width: 300px;
-            height: 200px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-        }
-        #date {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        #quote-container {
-            flex-grow: 1;
-            overflow-y: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #quote {
-            font-size: 16px;
-            line-height: 1.5;
-            padding: 0 10px;
-        }
-        #controls {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-        button {
-            background-color: #f0f0f0;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        button:hover {
-            background-color: #e0e0e0;
-        }
-        .color-picker {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-        }
-    </style>
-</head>
-<body>
-    <div id="widget">
-        <div id="date"></div>
-        <div id="quote-container">
-            <div id="quote"></div>
-        </div>
-        <div id="controls">
-            <button onclick="regenerateQuote()">↻</button>
-            <button onclick="showColorPicker('background')">🎨</button>
-            <button onclick="showColorPicker('font')">🖋</button>
-        </div>
-    </div>
-    <input type="color" id="background-color-picker" class="color-picker" onchange="changeColor('background', this.value)">
-    <input type="color" id="font-color-picker" class="color-picker" onchange="changeColor('font', this.value)">
-
-    <script>
-        const quotes = [
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quote Widget</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -172,125 +86,87 @@
     <script>
         const quotes = [
             "The creation of a thousand forests is in one acorn. - Ralph Waldo Emerson",
-            "The best time to plant a tree was 20 years ago. The second best time is now. - Chinese Proverb”,
-            "Growth is never by mere chance; it is the result of forces working together. - James Cash Penney”,
-            "A garden requires patient labor and attention. Plants do not grow merely to satisfy ambitions or to fulfill good intentions. They thrive because someone expended effort on them. - Liberty Hyde Bailey”,
-            "Productivity is never an accident. It is always the result of a commitment to excellence, intelligent planning, and focused effort. - Paul J. Meyer”,
-            "Trees are the earth's endless effort to speak to the listening heaven. - Rabindranath Tagore”,
-            "Like wildflowers, you must allow yourself to grow in all the places people thought you never would. - E.V.”,
-            "Plants give us oxygen for the lungs and for the soul. - Linda Solegato”,
-            "In every seed, there is the promise of a forest. - Matshona Dhliwayo”,
-            "Just as a plant needs sunlight, productivity requires clarity and focus. - Anonymous”,
-            "To plant a garden is to believe in tomorrow. - Audrey Hepburn”,
-            "You can’t harvest what you don’t plant. You can’t sustain what you don’t nurture. - Scott Perry”,
-            "Nature does not hurry, yet everything is accomplished. - Lao Tzu”,
-            "Productivity is being able to do things that you were never able to do before. - Franz Kafka”,
-            "The clearest way into the Universe is through a forest wilderness. - John Muir”,
-            "The more we nurture the planet, the more productive we become. - Anonymous”,
-            "He who plants a tree plants hope. - Lucy Larcom”,
-            "The soil is the great connector of our lives, the source and destination of all. - Wendell Berry”,
-            "Success is the sum of small efforts, repeated day in and day out. - Robert Collier”,
-            "A tree with strong roots laughs at storms. - Malay Proverb”,
-            "Where flowers bloom, so does hope. - Lady Bird Johnson”,
-            "Plant the seeds of your dreams today, and they will bloom tomorrow. - Anonymous”,
-            "Adopt the pace of nature: her secret is patience. - Ralph Waldo Emerson”,
-            "The plant that thrives is the one that is cared for. - Anonymous”,
-            "There is no productivity without clarity. - Anonymous”,
-            "A weed is a plant that has mastered every survival skill except for learning how to grow in rows. - Doug Larson”,
-            "The seeds of resilience are planted in the daily grind. - Anonymous”,
-            "Efficiency is doing better what is already being done. - Peter Drucker”,
-            "A garden is a grand teacher. It teaches patience and careful watchfulness; it teaches industry and thrift; above all, it teaches entire trust. - Gertrude Jekyll”,
-            "The roots of true achievement lie in the will to become the best that you can become. - Harold Taylor”,
-            "Every flower must grow through dirt. - Laurie Jean Sennott”,
-            "The most productive trees are those that grow slowly and steadily. - Anonymous”,
-            "The grass is greener where you water it. - Neil Barringham”,
-            "Productivity is the means through which we achieve our dreams. - Anonymous”,
-            "Bloom where you are planted. - Mary Engelbreit”,
-            "In the planting of seeds, there is a lesson in patience and a promise of tomorrow. - Anonymous”,
-            "Your mind is a garden. Your thoughts are the seeds. You can grow flowers, or you can grow weeds. - Anonymous”,
-            "There are no shortcuts to any place worth going. - Beverly Sills”,
-            "The greatest fine art of the future will be the making of a comfortable living from a small piece of land. - Abraham Lincoln”,
-            "Plant your own garden and decorate your own soul, instead of waiting for someone to bring you flowers. - Veronica A. Shoffstall”,
-            "The best fertilizer is the gardener's shadow. - Chinese Proverb”,
-            "The roots of education are bitter, but the fruit is sweet. - Aristotle”,
-            "Just as a tree grows and expands over time, so does the mind with knowledge and experience. - Anonymous”,
-            "The earth laughs in flowers. - Ralph Waldo Emerson”,
-            "Sow a thought, and you reap an action; sow an act, and you reap a habit; sow a habit, and you reap a character; sow a character, and you reap a destiny. - Ralph Waldo Emerson”,
-            "Growth itself contains the germ of happiness. - Pearl S. Buck”,
-            "The reward of a thing well done is having done it. - Ralph Waldo Emerson”,
-            "All plants are our brothers and sisters. They talk to us and if we listen, we can hear them. - Arapaho Proverb”,
-            "The secret to productivity lies in the seeds of consistency. - Anonymous”,
-            "He that plants trees loves others besides himself. - Thomas Fuller”,
-            "To thrive, a plant needs both rain and sunshine; to be productive, we need both effort and rest. - Anonymous”,
-            "Don’t judge each day by the harvest you reap but by the seeds that you plant. - Robert Louis Stevenson”,
-            "The roots of productivity are planted in the soil of discipline. - Anonymous”,
-            "The greatest oak was once a little nut who held its ground. - Anonymous”,
-            "The true meaning of life is to plant trees, under whose shade you do not expect to sit. - Nelson Henderson”,
-            "Nature always wears the colors of the spirit. - Ralph Waldo Emerson”,
-            "It’s not what you do occasionally, but what you do consistently, that determines your productivity. - Anonymous”,
-            "A flower does not think of competing with the flower next to it. It just blooms. - Zen Shin”,
-            "A tree's beauty lies in its branches, but its strength lies in its roots. - Matshona Dhliwayo”,
-            "In the garden, my soul is sunshine. - Anonymous”,
-            "The harvest of tomorrow lies in the seeds of today. - Anonymous”,
-            "Efficiency is intelligent laziness. - Anonymous”,
-            "A plant will grow wherever it’s planted, provided it’s nurtured. - Anonymous”,
-            "Growth demands a temporary surrender of security. - Gail Sheehy”,
-            "A garden is a thing of beauty and a job forever. - Richard Briers”,
-            "Success is like a plant: it grows best in fertile soil. - Anonymous”,
-            "Each day is a new opportunity to cultivate a more productive life. - Anonymous”,
-            “He who plants a tree plants a life. - Anonymous”,
-            "Your hard work will pay off like a well-tended garden. - Anonymous”,
-            "If you want to be more productive, plant the seeds of consistency and water them daily. - Anonymous”,
-            "Like a plant, we need roots to grow and thrive. - Anonymous”,
-            "Patience is bitter, but its fruit is sweet. - Jean-Jacques Rousseau”,
-            "Don’t watch the clock; do what it does. Keep going. - Sam Levenson”,
-            "A good system shortens the road to the goal. - Orison Swett Marden”,
-            "The gardener does not make a plant grow. The job of a gardener is to create optimal conditions. - Ken Robinson”,
-            "Productivity is the key to success, but productivity with purpose is the key to happiness. - Anonymous”,
-            "The bigger the challenge, the greater the growth. - Anonymous”,
-            "The flower that blooms in adversity is the rarest and most beautiful of all. - Mulan”,
-            "You are the gardener of your own life; plant seeds of positivity and productivity. - Anonymous”,
-            "What lies behind us and what lies before us are tiny matters compared to what lies within us. - Ralph Waldo Emerson”,
-            "In productivity, as in nature, the best results come from a balanced approach. - Anonymous”,
-            "The key to growth is the introduction of higher dimensions of consciousness into our awareness. - Lao Tzu”
-            
-        ];
-
-        function getRandomQuote() {
-            return quotes[Math.floor(Math.random() * quotes.length)];
-        }
-
-        function updateDate() {
-            const now = new Date();
-            document.getElementById('date').textContent = now.toDateString();
-        }
-
-        function regenerateQuote() {
-            document.getElementById('quote').textContent = getRandomQuote();
-        }
-
-        function showColorPicker(type) {
-            const colorPicker = document.getElementById(`${type}-color-picker`);
-            colorPicker.style.display = 'block';
-            colorPicker.focus();
-            colorPicker.click();
-        }
-
-        function changeColor(type, color) {
-            if (type === 'background') {
-                document.getElementById('widget').style.backgroundColor = color;
-            } else if (type === 'font') {
-                document.getElementById('widget').style.color = color;
-            }
-            document.getElementById(`${type}-color-picker`).style.display = 'none';
-        }
-
-        // Initialize widget
-        updateDate();
-        regenerateQuote();
-    </script>
-</body>
-</html>
+            "The best time to plant a tree was 20 years ago. The second best time is now. - Chinese Proverb",
+            "Growth is never by mere chance; it is the result of forces working together. - James Cash Penney",
+            "A garden requires patient labor and attention. Plants do not grow merely to satisfy ambitions or to fulfill good intentions. They thrive because someone expended effort on them. - Liberty Hyde Bailey",
+            "Productivity is never an accident. It is always the result of a commitment to excellence, intelligent planning, and focused effort. - Paul J. Meyer",
+            "Trees are the earth's endless effort to speak to the listening heaven. - Rabindranath Tagore",
+            "Like wildflowers, you must allow yourself to grow in all the places people thought you never would. - E.V.",
+            "Plants give us oxygen for the lungs and for the soul. - Linda Solegato",
+            "In every seed, there is the promise of a forest. - Matshona Dhliwayo",
+            "Just as a plant needs sunlight, productivity requires clarity and focus. - Anonymous",
+            "To plant a garden is to believe in tomorrow. - Audrey Hepburn",
+            "You can't harvest what you don't plant. You can't sustain what you don't nurture. - Scott Perry",
+            "Nature does not hurry, yet everything is accomplished. - Lao Tzu",
+            "Productivity is being able to do things that you were never able to do before. - Franz Kafka",
+            "The clearest way into the Universe is through a forest wilderness. - John Muir",
+            "The more we nurture the planet, the more productive we become. - Anonymous",
+            "He who plants a tree plants hope. - Lucy Larcom",
+            "The soil is the great connector of our lives, the source and destination of all. - Wendell Berry",
+            "Success is the sum of small efforts, repeated day in and day out. - Robert Collier",
+            "A tree with strong roots laughs at storms. - Malay Proverb",
+            "Where flowers bloom, so does hope. - Lady Bird Johnson",
+            "Plant the seeds of your dreams today, and they will bloom tomorrow. - Anonymous",
+            "Adopt the pace of nature: her secret is patience. - Ralph Waldo Emerson",
+            "The plant that thrives is the one that is cared for. - Anonymous",
+            "There is no productivity without clarity. - Anonymous",
+            "A weed is a plant that has mastered every survival skill except for learning how to grow in rows. - Doug Larson",
+            "The seeds of resilience are planted in the daily grind. - Anonymous",
+            "Efficiency is doing better what is already being done. - Peter Drucker",
+            "A garden is a grand teacher. It teaches patience and careful watchfulness; it teaches industry and thrift; above all, it teaches entire trust. - Gertrude Jekyll",
+            "The roots of true achievement lie in the will to become the best that you can become. - Harold Taylor",
+            "Every flower must grow through dirt. - Laurie Jean Sennott",
+            "The most productive trees are those that grow slowly and steadily. - Anonymous",
+            "The grass is greener where you water it. - Neil Barringham",
+            "Productivity is the means through which we achieve our dreams. - Anonymous",
+            "Bloom where you are planted. - Mary Engelbreit",
+            "In the planting of seeds, there is a lesson in patience and a promise of tomorrow. - Anonymous",
+            "Your mind is a garden. Your thoughts are the seeds. You can grow flowers, or you can grow weeds. - Anonymous",
+            "There are no shortcuts to any place worth going. - Beverly Sills",
+            "The greatest fine art of the future will be the making of a comfortable living from a small piece of land. - Abraham Lincoln",
+            "Plant your own garden and decorate your own soul, instead of waiting for someone to bring you flowers. - Veronica A. Shoffstall",
+            "The best fertilizer is the gardener's shadow. - Chinese Proverb",
+            "The roots of education are bitter, but the fruit is sweet. - Aristotle",
+            "Just as a tree grows and expands over time, so does the mind with knowledge and experience. - Anonymous",
+            "The earth laughs in flowers. - Ralph Waldo Emerson",
+            "Sow a thought, and you reap an action; sow an act, and you reap a habit; sow a habit, and you reap a character; sow a character, and you reap a destiny. - Ralph Waldo Emerson",
+            "Growth itself contains the germ of happiness. - Pearl S. Buck",
+            "The reward of a thing well done is having done it. - Ralph Waldo Emerson",
+            "All plants are our brothers and sisters. They talk to us and if we listen, we can hear them. - Arapaho Proverb",
+            "The secret to productivity lies in the seeds of consistency. - Anonymous",
+            "He that plants trees loves others besides himself. - Thomas Fuller",
+            "To thrive, a plant needs both rain and sunshine; to be productive, we need both effort and rest. - Anonymous",
+            "Don't judge each day by the harvest you reap but by the seeds that you plant. - Robert Louis Stevenson",
+            "The roots of productivity are planted in the soil of discipline. - Anonymous",
+            "The greatest oak was once a little nut who held its ground. - Anonymous",
+            "The true meaning of life is to plant trees, under whose shade you do not expect to sit. - Nelson Henderson",
+            "Nature always wears the colors of the spirit. - Ralph Waldo Emerson",
+            "It's not what you do occasionally, but what you do consistently, that determines your productivity. - Anonymous",
+            "A flower does not think of competing with the flower next to it. It just blooms. - Zen Shin",
+            "A tree's beauty lies in its branches, but its strength lies in its roots. - Matshona Dhliwayo",
+            "In the garden, my soul is sunshine. - Anonymous",
+            "The harvest of tomorrow lies in the seeds of today. - Anonymous",
+            "Efficiency is intelligent laziness. - Anonymous",
+            "A plant will grow wherever it's planted, provided it's nurtured. - Anonymous",
+            "Growth demands a temporary surrender of security. - Gail Sheehy",
+            "A garden is a thing of beauty and a job forever. - Richard Briers",
+            "Success is like a plant: it grows best in fertile soil. - Anonymous",
+            "Each day is a new opportunity to cultivate a more productive life. - Anonymous",
+            "He who plants a tree plants a life. - Anonymous",
+            "Your hard work will pay off like a well-tended garden. - Anonymous",
+            "If you want to be more productive, plant the seeds of consistency and water them daily. - Anonymous",
+            "Like a plant, we need roots to grow and thrive. - Anonymous",
+            "Patience is bitter, but its fruit is sweet. - Jean-Jacques Rousseau",
+            "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+            "A good system shortens the road to the goal. - Orison Swett Marden",
+            "The gardener does not make a plant grow. The job of a gardener is to create optimal conditions. - Ken Robinson",
+            "Productivity is the key to success, but productivity with purpose is the key to happiness. - Anonymous",
+            "The bigger the challenge, the greater the growth. - Anonymous",
+            "The flower that blooms in adversity is the rarest and most beautiful of all. - Mulan",
+            "You are the gardener of your own life; plant seeds of positivity and productivity. - Anonymous",
+            "What lies behind us and what lies before us are tiny matters compared to what lies within us. - Ralph Waldo Emerson",
+            "In productivity, as in nature, the best results come from a balanced approach. - Anonymous",
+            "The key to growth is the introduction of higher dimensions of consciousness into our awareness. - Lao Tzu"
         ];
 
         function getRandomQuote() {
