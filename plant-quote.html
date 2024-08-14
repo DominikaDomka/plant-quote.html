@@ -84,7 +84,94 @@
 
     <script>
         const quotes = [
-            "The creation of a thousand forests is in one acorn. - Ralph Waldo Emerson"
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Widget</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: transparent;
+        }
+        #widget {
+            width: 300px;
+            height: 200px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+        #date {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        #quote-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #quote {
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+        #controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        button:hover {
+            background-color: #e0e0e0;
+        }
+        .color-picker {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div id="widget">
+        <div id="date"></div>
+        <div id="quote-container">
+            <div id="quote"></div>
+        </div>
+        <div id="controls">
+            <button onclick="regenerateQuote()">↻</button>
+            <button onclick="showColorPicker('background')">🎨</button>
+            <button onclick="showColorPicker('font')">🖋</button>
+        </div>
+    </div>
+    <input type="color" id="background-color-picker" class="color-picker" onchange="changeColor('background', this.value)">
+    <input type="color" id="font-color-picker" class="color-picker" onchange="changeColor('font', this.value)">
+
+    <script>
+        const quotes = [
+            "The creation of a thousand forests is in one acorn. - Ralph Waldo Emerson",
             "The best time to plant a tree was 20 years ago. The second best time is now. - Chinese Proverb”,
             "Growth is never by mere chance; it is the result of forces working together. - James Cash Penney”,
             "A garden requires patient labor and attention. Plants do not grow merely to satisfy ambitions or to fulfill good intentions. They thrive because someone expended effort on them. - Liberty Hyde Bailey”,
@@ -166,6 +253,44 @@
             "What lies behind us and what lies before us are tiny matters compared to what lies within us. - Ralph Waldo Emerson”,
             "In productivity, as in nature, the best results come from a balanced approach. - Anonymous”,
             "The key to growth is the introduction of higher dimensions of consciousness into our awareness. - Lao Tzu”
+            
+        ];
+
+        function getRandomQuote() {
+            return quotes[Math.floor(Math.random() * quotes.length)];
+        }
+
+        function updateDate() {
+            const now = new Date();
+            document.getElementById('date').textContent = now.toDateString();
+        }
+
+        function regenerateQuote() {
+            document.getElementById('quote').textContent = getRandomQuote();
+        }
+
+        function showColorPicker(type) {
+            const colorPicker = document.getElementById(`${type}-color-picker`);
+            colorPicker.style.display = 'block';
+            colorPicker.focus();
+            colorPicker.click();
+        }
+
+        function changeColor(type, color) {
+            if (type === 'background') {
+                document.getElementById('widget').style.backgroundColor = color;
+            } else if (type === 'font') {
+                document.getElementById('widget').style.color = color;
+            }
+            document.getElementById(`${type}-color-picker`).style.display = 'none';
+        }
+
+        // Initialize widget
+        updateDate();
+        regenerateQuote();
+    </script>
+</body>
+</html>
         ];
 
         function getRandomQuote() {
